@@ -6,10 +6,11 @@ import TodoInsert from './TodoInsert';
 const INSERT = 'INSERT';
 const REMOVE = 'REMOVE';
 const TOGGLE = 'TOGGLE';
+const EXAM_COUNT = 1;
 
 function createBulkTodos() {
   const array = [];
-  for (let i = 1; i <= 2500; i++) {
+  for (let i = 1; i <= EXAM_COUNT; i++) {
     array.push({
       id: i,
       text: `할 일${i}`,
@@ -42,7 +43,7 @@ const App = () => {
 
   // 고윳값으로 사용될 id
   // ref를 사용하여 변수 담기
-  const nextId = useRef(2501);
+  const nextId = useRef(EXAM_COUNT + 1);
 
   const onInsert = useCallback(
     text => {
