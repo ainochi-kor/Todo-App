@@ -25,12 +25,14 @@
     background: #868e96;
     color: white;
     padding-left: 1rem;
-    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: 0.1s background ease-in;
+    text-align: center;
+
     &:hover {
       background: #adb5bd;
     }

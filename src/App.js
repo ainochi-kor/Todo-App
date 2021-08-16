@@ -2,10 +2,12 @@ import React, { useRef, useCallback, useReducer } from 'react'
 import TodoTemplate from './TodoTemplate';
 import TodoList from './TodoList';
 import TodoInsert from './TodoInsert';
+import TodoRemoveAll from './TodoRemoveAll';
 
 const INSERT = 'INSERT';
 const REMOVE = 'REMOVE';
 const TOGGLE = 'TOGGLE';
+const REMOVE_ALL = 'REMOVE_ALL';
 const EXAM_COUNT = 1;
 
 function createBulkTodos() {
@@ -33,6 +35,8 @@ function todoReducer(todos, action) {
       return todos.map(todo =>
         todo.id === action.id ? { ...todo, checked: !todo.checked } : todo
       );
+    case REMOVE_ALL:
+      return todos = [];
     default:
       return todos;
   }
@@ -65,6 +69,13 @@ const App = () => {
     []
   );
 
+  const onRemoveAll = useCallback(
+    id => {
+      dispatch({ type: REMOVE_ALL, id })
+    },
+    []
+  );
+
   const onToggle = useCallback(
     id => {
       dispatch({ type: TOGGLE, id });
@@ -72,10 +83,13 @@ const App = () => {
   )
 
   return (
-    <TodoTemplate>
-      <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
-    </TodoTemplate>
+    <>
+      <TodoTemplate>
+        <TodoInsert onInsert={onInsert} />
+        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+        <TodoRemoveAll onRemoveAll={onRemoveAll} />
+      </TodoTemplate>
+    </>
   )
 }
 
