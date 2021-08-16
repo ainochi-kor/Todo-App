@@ -39,8 +39,13 @@
       color: ff8787;
     }
   }
-  // 엘리먼트 사이에 테두리를 넣어 줌
-  & + & {
-    border-top: 1px solid #dee2e6;
+
+  .TodoListItem-virtualized {
+    & + & {
+      border-top: 1px solid #dee2e6;
+    }
+    &:nth-child(even) {
+      background: #f8f9fa;
+    }
   }
 }
